@@ -32,7 +32,8 @@ def convert(bucket_name="hf-sagemaker-inference"):
     # load fp 16 model
     print("Loading model from `EleutherAI/gpt-j-6B`")
     model = GPTJForCausalLM.from_pretrained(
-        "EleutherAI/gpt-j-6B", revision="float16", torch_dtype=torch.float16
+        "EleutherAI/gpt-j-6B", revision="float16", torch_dtype=torch.float16,
+        cache_dir="./.cache/"
     )
     print("saving model with `torch.save`")
     torch.save(model, os.path.join(model_save_dir, "gptj.pt"))
